@@ -10,6 +10,7 @@ run Open365 in your computer.
 
 - Docker
 - Docker-compose (1.3 or higher)
+- Docker-machine (optional if docker engine higher then 1.9.1)
 - Python3
 
 ### Python packages
@@ -33,6 +34,26 @@ run Open365 in your computer.
 ```
 
 We require SELinux to be disabled.
+
+- Mac osx
+
+```
+ $ xcode-select --install
+ $ brew tap brona/iproute2mac
+ $ pip3 install pymongo
+ $ pip3 install ldap3
+ $ pip3 install requests
+ $ yum install mysqlclient
+```
+
+Install docker-machine and execute following to get version 1.9.1 of docker engine :
+
+```
+docker-machine create node-open365 -d virtualbox     --virtualbox-boot2docker-url https://github.com/boot2docker/boot2docker/releases/download/v1.9.1/boot2docker.iso
+docker-machine env node-open365
+eval $(docker-machine env node-open365)
+docker-machine ip node-open365
+```
 
 # How to use it
 
