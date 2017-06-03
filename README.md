@@ -46,6 +46,22 @@ We require SELinux to be disabled.
  $ yum install mysqlclient
 ```
 
+Install Docker client alias for version 1.9
+
+See https://github.com/Shopify/docker/blob/master/docs/installation/binaries.md
+
+```
+cd ~
+curl -O https://get.docker.com/builds/Darwin/x86_64/docker-1.9.0.tgz 
+tar -xvf docker-1.9.0.tgz 
+mv usr/local/bin/docker /usr/local/bin/docker-1.9.0
+cd /usr/local/bin
+curversion=docker-1.10.0 version | grep Version | cut -d ':' -f 2 | awk 'NR==1{ printf $1 }'
+mv docker docker-${curversion}
+ln -s docker-1.9.0 docker
+docker version
+```
+
 Install docker-machine and execute following to get version 1.9.1 of docker engine :
 
 ```
@@ -54,6 +70,14 @@ docker-machine env node-open365
 eval $(docker-machine env node-open365)
 docker-machine ip node-open365
 ```
+
+Check docker node version is correct (1.9.1)
+```
+docker-machine ls
+
+node-open365     *        virtualbox   Running   tcp://192.168.99.104:2376                  v1.9.0   
+```
+
 
 # How to use it
 
